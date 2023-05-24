@@ -68,3 +68,28 @@ def get_db() -> MySQLConnection:
         database=db_name
     )
     return db_connector
+
+
+def main():
+    """main function"""
+    full_PII_FIELDS = ("name", "email", "phone", "ssn",
+                       "password", "ip", "last_login", "user_agent")
+    db = get_db()
+    cursor = db.cursor()
+    # get infos from users table
+    cursor.execute("SELECT * FROM users;")
+    for row in cursor:
+        # create a string of item=value fields with all user infos
+        infos = "; ".join([f"{full_PII_FIELDS[i]}={row[i]}" for i in range(8)])
+        # make it into a LogRecord object
+        log_record = logging.LogRecord("user_data", logging.INFO,
+                                       None, None, infos, None, None)
+        # filter with RedactingFormatter
+        formatter = RedactingFormatter(list(PII_FIELDS))
+        print(formatter.format(log_record))
+    cursor.close()
+    db.close()
+
+
+if __name__ == "__main__":
+    main()

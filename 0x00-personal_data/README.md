@@ -101,3 +101,38 @@ bob@dylan:~$ PERSONAL_DATA_DB_USERNAME=root PERSONAL_DATA_DB_PASSWORD=root PERSO
 2
 bob@dylan:~$
 ```
+
+### [4. Read and filter data](./filtered_logger.py)
+Implement a `main` function that takes no arguments and returns nothing.
+The function will obtain a database connection using `get_db` and retrieve all rows in the `users` table and display each row under a filtered format:
+```
+[HOLBERTON] user_data INFO 2019-11-19 18:37:59,596: name=***; email=***; phone=***; ssn=***; password=***; ip=e848:e856:4e0b:a056:54ad:1e98:8110:ce1b; last_login=2019-11-14T06:16:24; user_agent=Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; KTXN);
+```
+Filtered fields:
+* `name`
+* `email`
+* `phone`
+* `ssn`
+* `password`
+only your `main` function should run when the module is executed.
+```
+bob@dylan:~$ 
+bob@dylan:~$ cat main.sql | mysql -uroot -p
+Enter password: 
+bob@dylan:~$ 
+bob@dylan:~$ echo "SELECT COUNT(*) FROM users;" | mysql -uroot -p my_db
+Enter password: 
+2
+bob@dylan:~$ 
+```
+
+```
+bob@dylan:~$ 
+bob@dylan:~$ cat main.sql | mysql -uroot -p
+Enter password: 
+bob@dylan:~$ 
+bob@dylan:~$ echo "SELECT COUNT(*) FROM users;" | mysql -uroot -p my_db
+Enter password: 
+2
+bob@dylan:~$ 
+```
