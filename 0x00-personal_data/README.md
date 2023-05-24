@@ -76,3 +76,28 @@ bob@dylan:~$ ./main.py
 PII_FIELDS: 5
 bob@dylan:~$
 ```
+
+### [3. Connect to secure database](./filtered_logger.py)
+Database credentials should NEVER be stored in code or checked into version control. One secure option is to store them as environment variable.
+
+Implement the `get_db` function that returns a connector to a database(`mysql.connector.connection.MySQLConnection` object).
+
+- Use the `os` module to obtain credentials from the environment:
+- Use the module `mysql-connector-python` to connect to the MySQL database (`pip3 install mysql-connector-python`)
+```
+bob@dylan:~$ 
+bob@dylan:~$ cat main.sql | mysql -uroot -p
+Enter password: 
+bob@dylan:~$ 
+bob@dylan:~$ echo "SELECT COUNT(*) FROM users;" | mysql -uroot -p my_db
+Enter password: 
+2
+bob@dylan:~$ 
+```
+
+```
+bob@dylan:~$
+bob@dylan:~$ PERSONAL_DATA_DB_USERNAME=root PERSONAL_DATA_DB_PASSWORD=root PERSONAL_DATA_DB_HOST=localhost PERSONAL_DATA_DB_NAME=my_db ./main.py
+2
+bob@dylan:~$
+```

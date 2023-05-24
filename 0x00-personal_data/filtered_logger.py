@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """personal data filter and logging module"""
 import re
-from typing import List
+from typing import List, Union, Tuple, Any
 import logging
+import os
+import mysql.connector
+from mysql.connector.connection import MySQLConnection
 
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
@@ -50,3 +53,18 @@ def get_logger() -> logging.Logger:
     strm_hndlr.setFormatter(formatter)
     logger.addHandler(strm_hndlr)
     return logger
+
+
+def get_db() -> Union[MySQLConnection, Any]:
+    """returns a connector object to the database"""
+    user = os.getenv("PERSONAL_DATA_DB_USERNAME", "root")
+    password = os.getenv("PERSONAL_DATA_DB_PASSWORD", "")
+    host = os.getenv("PERSONAL_DATA_DB_HOST", "localhost")
+    db_name = os.getenv("PERSONAL_DATA_DB_NAME")
+    db_connector = mysql.connector.connect(
+        user=user,
+        password=password,
+        host=host,
+        database=db_name
+    )
+    return db_connector
