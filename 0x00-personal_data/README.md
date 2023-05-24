@@ -151,3 +151,20 @@ b'$2b$12$Fnjf6ew.oPZtVksngJjh1.vYCnxRjPm2yt18kw6AuprMRpmhJVxJO'
 b'$2b$12$xSAw.bxfSTAlIBglPMXeL.SJnzme3Gm0E7eOEKOVV2OhqOakyUN5m'
 bob@dylan:~$
 ```
+
+### [6. Check valid password](./encrypt_password.py)
+Implement an `is_valid` function that expects 2 arguments and returns a boolean.
+
+Arguments:
+* `hashed_password`: `bytes` type
+* `password`: string type
+
+Use `bcrypt` to validate that the provided password matches the hashed password.
+
+```
+bob@dylan:~$
+bob@dylan:~$ ./main.py
+b'$2b$12$Fnjf6ew.oPZtVksngJjh1.vYCnxRjPm2yt18kw6AuprMRpmhJVxJO'
+True
+bob@dylan:~$
+```
