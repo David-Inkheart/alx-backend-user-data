@@ -55,3 +55,24 @@ bob@dylan:~$ ./main.py
 [HOLBERTON] my_logger INFO 2019-11-19 18:24:25,105: name=Bob; email=***; ssn=***; password=***;
 bob@dylan:~$
 ```
+
+### [2. Create logger](./filtered_logger.py)
+Use [user_data.csv](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/misc/2019/11/a2e00974ce6b41460425.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230524%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230524T180416Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=18986baf70daa4d1c9d0b9af73bc89a60491b0ec9a43efe3d8054e79c408e2fe) for this task
+
+Implement a `get_logger` function that takes no arguments and returns a `logging.Logger` object.
+
+The logger should be named `user_data` and only log up to `logging.INFO` level. It should not propagate messages to other loggers. It should have a `StreamHandler` with `RedactingFormatter` as formatter.
+
+Create a tuple `PII_FIELDS` constant at the root of the module containing the fields from `user_data.csv` that are considered PII. `PII_FIELDS` can contain only 5 fields - choose the right list of fields that can be considered as "important" PII data or information that must be hidden in logs. Use it to parameterize the formatter.
+
+**Tips:**
+* `[What Is PII, non-PII, and personal data?](https://piwik.pro/blog/what-is-pii-personal-data/)`
+* `[Uncovering Password Habits](https://www.digitalguardian.com/blog/uncovering-password-habits-are-users-password-security-habits-improving-infographic)`
+
+```
+bob@dylan:~$
+bob@dylan:~$ ./main.py
+<class 'logging.Logger'>
+PII_FIELDS: 5
+bob@dylan:~$
+```
