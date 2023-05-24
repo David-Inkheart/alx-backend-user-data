@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """personal data filter and logging module"""
 import re
-from typing import List, Union, Tuple, Any
+from typing import List, Union, Any
 import logging
 import os
 import mysql.connector
