@@ -1,9 +1,10 @@
-# This project covers some concepts on the authentication process and implementation of a Basic Authentication on a simple API:
+# This project covers some concepts on the authentication process and implementation of a Basic Authentication on a simple REST API:
 - What authentication means
 - What Base64 is
 - How to encode/decode Base64
 - What Basic Authentication means
 - How to send the Authorization header
+- Error catching and handling
 
 
 ### [0. Simple-basic-API](./api/v1/app.py)
@@ -21,3 +22,21 @@ bob@dylan:~$ API_HOST=0.0.0.0 API_PORT=5000 python3 -m api.v1.app
 ...
 bob@dylan:~$
 ```
+
+### [1. Error handler: Unauthorized](./api/v1/app.py)
+What the HTTP status code for a request unauthorized? `401` of course!
+
+Edit `api/v1/app.py` :
+    - Add a new error handler for this status code, the response must be:
+    - a JSON: `{"error": "Unauthorized"}`
+    - a status code: `401`
+    - you must use `jsonify` from `flask`
+For testing this new error handler, add a new endpoint in `api/v1/app.py`:
+    - Route: `/api/v1/unauthorized`
+    - Method: `GET`
+    - Use the function `abort` from `flask` to raise the error `401`
+By calling `abort(401)`, the error handler for 401 will be executed.
+
+`abort` - [Custom Error Pages](https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/) 
+
+### [2. Error handler: Forbidden](./api/v1/auth/auth.py)
