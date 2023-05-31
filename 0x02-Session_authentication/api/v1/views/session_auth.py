@@ -9,7 +9,7 @@ import os
 
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def auth_session_login() -> str:
-    """ 
+    """
     Return Jsonified User object with cookies if login successful
     """
     email = request.form.get('email')
