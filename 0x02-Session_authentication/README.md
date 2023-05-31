@@ -4,7 +4,3 @@
 - What are cookies and how to use them
 - How to send Cookies
 - How to parse Cookies
-- Error catching and handling
-
-
-### [0. Et moi et moi et moi!](./api/v1/app.py)
