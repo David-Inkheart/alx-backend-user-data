@@ -7,8 +7,6 @@ from models.base import Base
 class UserSession(Base):
     """ UserSession class for SessionDBAuth
     """
-    user_id: str = ""
-    session_id: str = ""
 
     def __init__(self, *args: list, **kwargs: dict):
         """ Initialize a UserSession instance
