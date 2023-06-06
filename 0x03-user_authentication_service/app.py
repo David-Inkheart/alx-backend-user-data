@@ -29,7 +29,7 @@ def users() -> str:
 
 @app.route('/sessions', methods=['POST'], strict_slashes=False)
 def login() -> str:
-    """Login route"""
+    """user login route"""
     email = request.form.get('email')
     password = request.form.get('password')
     if AUTH.valid_login(email, password):
@@ -43,7 +43,7 @@ def login() -> str:
 
 @app.route('/sessions', methods=['DELETE'], strict_slashes=False)
 def logout() -> str:
-    """Logout route"""
+    """user logout route"""
     session_id = request.cookies.get('session_id')
     user = AUTH.get_user_from_session_id(session_id)
     if user:
