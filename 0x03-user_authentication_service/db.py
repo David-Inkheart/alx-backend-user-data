@@ -53,7 +53,7 @@ class DB:
         return user_obj
 
     def update_user(self, user_id: int, **kwargs) -> None:
-        """Update the user’s attributes as passed in the method’s arguments
+        """Update the user’s attributes repr as **kwargs
         then commit changes to the database
         """
         user_obj = self.find_user_by(id=user_id)
