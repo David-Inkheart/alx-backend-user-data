@@ -81,13 +81,11 @@ def update_password() -> str:
     """update password route"""
     email = request.form.get('email')
     reset_token = request.form.get('reset_token')
-    password = request.form.get('password')
+    new_password = request.form.get('new_password')
     try:
-        if not AUTH.get_user_from_session_id(reset_token):
-            raise ValueError
-        AUTH.update_password(reset_token, password)
+        AUTH.update_password(reset_token, new_password)
         return jsonify({"email": email, "message": "Password updated"}), 200
-    except [NoResultFound, ValueError]:
+    except ValueError:
         abort(403)
 
 
